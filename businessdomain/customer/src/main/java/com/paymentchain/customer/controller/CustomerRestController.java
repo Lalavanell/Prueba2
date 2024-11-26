@@ -70,9 +70,13 @@ public class CustomerRestController {
                 connection.addHandlerLast(new WriteTimeoutHandler(5000, TimeUnit.MILLISECONDS));
             });
 
-    @GetMapping()
-    public List<Customer> list() {
-        return customerRepository.findAll();
+    @GetMapping("/listarAll")
+    public ResponseEntity<?> list() {
+        List<Customer> customers = customerRepository.findAll();
+        if (customers.isEmpty()) {
+            return ResponseEntity.ok("La lista de clientes está vacía.");
+        }
+        return ResponseEntity.ok(customers);
     }
     
     @Autowired
