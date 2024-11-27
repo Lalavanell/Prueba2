@@ -78,11 +78,12 @@ public class CustomerRestController {
         }
         return ResponseEntity.ok(customers);
     }
-    
+
     @Autowired
     private Environment env;
     @GetMapping("/check")
     public String check (){
+        //jdaaksdas
         return "Hello your proerty value is: "+ env.getProperty("custom.activeprofileName");
     }
 
